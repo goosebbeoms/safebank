@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: safebank-api
+
+# Development Profile
+
+
+# Test Profile

@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 public class Member {
 
     @Id @GeneratedValue
+    @Column(name = "member_id")
     private Long id;
 
     @NotBlank(message = "사용자명은 필수입니다.")

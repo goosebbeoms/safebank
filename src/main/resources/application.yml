@@ -5,7 +5,15 @@ spring:
   application:
     name: safebank-api
 
-# Development Profile
+server:
+  port: 8080
+  servlet:
+    context-path: /api
 
-
-# Test Profile
+# 공통 로깅 설정
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/safebank-api.log

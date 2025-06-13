@@ -11,6 +11,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,15 +24,15 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    @NotBlank(message = "사용자명은 필수입니다.")
+    @NotBlank(message = "사용자명은 필수입니다")
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Email(message = "이메일 형식이 올바르지 않습니다.")
+    @Email(message = "이메일 형식이 올바르지 않습니다")
     @Column(unique = true, nullable = false)
     private String email;
 
-    @NotBlank(message = "전화번호는 필수입니다.")
+    @NotBlank(message = "전화번호는 필수입니다")
     @Column(nullable = false, length = 20)
     private String phoneNumber;
 
@@ -40,7 +41,8 @@ public class Member {
     @Builder.Default
     private MemberStatus status = MemberStatus.ACTIVE;
 
-//    private List<Account> accounts;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Account> accounts;
 
     @CreationTimestamp
     @Column(updatable = false)

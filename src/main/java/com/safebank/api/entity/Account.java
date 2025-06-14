@@ -48,4 +48,34 @@ public class Account {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    // 편의 메서드
+
+    /**
+     * 입금
+     * @param amount
+     */
+    public void deposit(BigDecimal amount) {
+        this.balance = this.balance.add(amount);
+    }
+
+    /**
+     * 출금
+     * @param amount
+     */
+    public void withdraw(BigDecimal amount) {
+        if (!hasEnoughBalance(amount)) {
+            throw new IllegalArgumentException("잔액이 부족합니다");
+        }
+        this.balance = this.balance.subtract(amount);
+    }
+
+    /**
+     * 잔액 존재 여부
+     * @param amount
+     * @return
+     */
+    public boolean hasEnoughBalance(BigDecimal amount) {
+        return this.balance.compareTo(amount) >= 0;
+    }
 }

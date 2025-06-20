@@ -28,9 +28,14 @@ public class TransactionService {
         Account fromAccount = accountService.getAccountByNumber(request.getFromAccountNumber());
         Account toAccount = accountService.getAccountByNumber(request.getToAccountNumber());
 
+        // 동일 계좌 검증
+        if (fromAccount.getAccountNumber().equals(toAccount.getAccountNumber())) {
+            throw new IllegalArgumentException("동일한 계좌로는 이체할 수 없습니다.");
+        }
+
         // 잔액 확인
         if (!fromAccount.hasEnoughBalance(request.getAmount())) {
-            throw new InsufficientBalanceException("잔액이 부족합니다. 현재 잔악 " + fromAccount.getBalance());
+            throw new InsufficientBalanceException("잔액이 부족합니다. 현재 잔액 " + fromAccount.getBalance());
         }
 
         // 계좌 간 이체 실행
@@ -47,11 +52,11 @@ public class TransactionService {
                 .description(request.getDescription())
                 .build();
 
-        Transaction savedTransacition = transactionRepository.save(transaction);
+        Transaction savedTransaction = transactionRepository.save(transaction);
 
-        log.info("이체가 완료되었습니다. 거래 ID: {}, 금액: {}, {} -> {}", savedTransacition.getId(), request.getAmount(), request.getFromAccountNumber(), request.getToAccountNumber());
+        log.info("이체가 완료되었습니다. 거래 ID: {}, 금액: {}, {} -> {}", savedTransaction.getId(), request.getAmount(), request.getFromAccountNumber(), request.getToAccountNumber());
 
-        return savedTransacition;
+        return savedTransaction;
     }
 
     public Page<Transaction> getAccountTransactions(String accountNumber, Pageable pageable) {

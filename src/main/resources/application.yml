@@ -3,14 +3,14 @@ spring:
     name: safebank-api
 
   datasource:
-    url: jdbc:h2:tcp://localhost/~/safebank
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-#    url: jdbc:mysql://localhost:3306/safebank?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
-#    username: admin
-#    password: admin38123812
-#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:h2:tcp://localhost/~/safebank
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/safebank
+    username: root
+    password: pwd1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:

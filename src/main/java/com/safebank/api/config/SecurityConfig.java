@@ -15,11 +15,13 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
-//                        .requestMatchers("/api/**").permitAll()
-//                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-//                        .requestMatchers("/h2-console/**").permitAll()
-//                        .anyRequest().authenticated()
+//                        .anyRequest().permitAll()
+                        .requestMatchers("/members/**").permitAll()
+                        .requestMatchers("/accounts/**").permitAll()
+                        .requestMatchers("/transactions/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .anyRequest().authenticated()
                 );
 
         return http.build();

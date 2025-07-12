@@ -29,6 +29,15 @@ public class MemberController {
     private final MemberService memberService;
     private final AccountService accountService;
 
+    @GetMapping
+    @Operation(summary = "전체 회원 조회", description = "생성된 회원 목록을 조회합니다")
+    public ResponseEntity<ApiResponse<List<MemberResponse>>> getMembers() {
+        List<Member> members = memberService.getMembers();
+        List<MemberResponse> collect = members.stream().map(m -> MemberResponse.from(m)).collect(Collectors.toList());
+
+        return ResponseEntity.ok(ApiResponse.success(collect));
+    }
+
     @PostMapping
     @Operation(summary = "회원 생성", description = "새로운 회원을 생성합니다")
     public ResponseEntity<ApiResponse<MemberResponse>> createMember(@Valid @RequestBody MemberCreateRequest request) {

@@ -21,6 +21,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/accounts")
 @RequiredArgsConstructor
@@ -29,6 +32,15 @@ public class AccountController {
 
     private final AccountService accountService;
     private final TransactionService transactionService;
+
+    @GetMapping
+    @Operation(summary = "전체 계좌 조회", description = "개설된 전체 계좌를 조회합니다")
+    public ResponseEntity<ApiResponse<List<AccountResponse>>> getAccounts() {
+        List<Account> accounts = accountService.getAccounts();
+        List<AccountResponse> collect = accounts.stream().map((account) -> AccountResponse.from(account)).collect(Collectors.toList());
+
+        return ResponseEntity.ok(ApiResponse.success(collect));
+    }
 
     @PostMapping
     @Operation(summary = "계좌 생성", description = "새로운 계좌를 생성합니다")

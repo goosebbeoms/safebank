@@ -23,6 +23,13 @@ public class AccountService {
     private final MemberService memberService;
 
     /**
+     * 전체 계좌 조회
+     */
+    public List<Account> getAccounts() {
+        return accountRepository.findAll();
+    }
+
+    /**
      * 계좌 생성
      * @param request
      * @return

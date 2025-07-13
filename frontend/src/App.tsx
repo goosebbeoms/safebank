@@ -3,6 +3,7 @@ import {Layout} from "./components/layout/Layout.tsx";
 import {DashboardPage} from "./pages/DashboardPage.tsx";
 import {MemberPage} from "./pages/MemberPage.tsx";
 import {AccountPage} from "./pages/accountPage.tsx";
+import { TransactionPage } from "./pages/TransactionPage.tsx";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/members" element={<MemberPage />} />
           <Route path="/accounts" element={<AccountPage />} />
-          {/*<Route path="/transactions" element={} />*/}
+          <Route path="/transactions" element={<TransactionPage />} />
           {/*<Route path="*" element={} />*/}
         </Routes>
       </Layout>

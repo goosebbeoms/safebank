@@ -1,5 +1,5 @@
 import type {ApiResponse} from "../types/api.ts";
-import type {Account} from "../types/account.ts";
+import type {Account, AccountCreateRequest} from "../types/account.ts";
 import api from "./api.ts";
 
 export const accountService = {

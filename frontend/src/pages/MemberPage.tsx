@@ -5,6 +5,7 @@ import {Button} from "../components/ui/Button.tsx";
 import {MemberForm} from "../components/forms/MemberForm.tsx";
 import {MemberList} from "../components/MemberList.tsx";
 import {memberService} from "../services/memberService.ts";
+import type {MemberCreateRequest} from "../types/member.ts";
 
 export const MemberPage = () => {
     const { members, loading, error, setMembers, addMember, setLoading, setError } = useMemberStore()

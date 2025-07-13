@@ -1,5 +1,6 @@
 import {Card} from "./ui/Card.tsx";
 import {CreditCard, User} from "lucide-react";
+import type {Account} from "../types/account.ts";
 
 interface AccountListProps {
     accounts: Account[];

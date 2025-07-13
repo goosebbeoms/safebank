@@ -7,6 +7,7 @@ import {AccountList} from "../components/AccountList.tsx";
 import {accountService} from "../services/accountService.ts";
 import {AccountForm} from "../components/forms/AccountForm.tsx";
 import {memberService} from "../services/memberService.ts";
+import type {AccountCreateRequest} from "../types/account.ts";
 
 export const AccountPage = () => {
     const { accounts, loading, error, setAccounts, addAccount, setLoading, setError } = useAccountStore()

@@ -3,14 +3,17 @@ import { Card } from "../components/ui/Card.tsx";
 import { ArrowRightLeft, CreditCard, TrendingUp, Users } from "lucide-react";
 import { memberService } from "../services/memberService.ts";
 import { accountService } from "../services/accountService.ts";
+import { transactionService } from "../services/transactionService.ts";
 
 export const DashboardPage = () => {
   const [memberCount, setMemberCount] = useState<number>(0);
-  const [accountsCount, setAccountsCount] = useState<number>(0);
+  const [accountCount, setAccountCount] = useState<number>(0);
+  const [transactionCount, setTransactionCount] = useState<number>(0);
 
   useEffect(() => {
     loadMemberCount();
-    loadAccountsCount();
+    loadAccountCount();
+    loadTransactionCount();
   }, []);
 
   const loadMemberCount = async () => {
@@ -18,9 +21,14 @@ export const DashboardPage = () => {
     setMemberCount(response.data);
   };
 
-  const loadAccountsCount = async () => {
+  const loadAccountCount = async () => {
     const response = await accountService.getCount();
-    setAccountsCount(response.data);
+    setAccountCount(response.data);
+  };
+
+  const loadTransactionCount = async () => {
+    const response = await transactionService.getTransactionCount();
+    setTransactionCount(response.data);
   };
 
   // sample data
@@ -51,9 +59,7 @@ export const DashboardPage = () => {
             <CreditCard className="h-8 w-8 text-green-600" />
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">총 계좌 수</p>
-              <p className="text-2xl font-bold text-gray-900">
-                {accountsCount}
-              </p>
+              <p className="text-2xl font-bold text-gray-900">{accountCount}</p>
             </div>
           </div>
         </Card>
@@ -64,7 +70,7 @@ export const DashboardPage = () => {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">총 거래 수</p>
               <p className="text-2xl font-bold text-gray-900">
-                {stats.totalTransactions.toLocaleString()}
+                {transactionCount}
               </p>
             </div>
           </div>

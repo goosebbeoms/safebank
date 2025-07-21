@@ -2,17 +2,25 @@ import { useEffect, useState } from "react";
 import { Card } from "../components/ui/Card.tsx";
 import { ArrowRightLeft, CreditCard, TrendingUp, Users } from "lucide-react";
 import { memberService } from "../services/memberService.ts";
+import { accountService } from "../services/accountService.ts";
 
 export const DashboardPage = () => {
   const [memberCount, setMemberCount] = useState<number>(0);
+  const [accountsCount, setAccountsCount] = useState<number>(0);
 
   useEffect(() => {
     loadMemberCount();
+    loadAccountsCount();
   }, []);
 
   const loadMemberCount = async () => {
     const response = await memberService.getCount();
     setMemberCount(response.data);
+  };
+
+  const loadAccountsCount = async () => {
+    const response = await accountService.getCount();
+    setAccountsCount(response.data);
   };
 
   // sample data
@@ -44,7 +52,7 @@ export const DashboardPage = () => {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">총 계좌 수</p>
               <p className="text-2xl font-bold text-gray-900">
-                {stats.totalAccounts.toLocaleString()}
+                {accountsCount}
               </p>
             </div>
           </div>

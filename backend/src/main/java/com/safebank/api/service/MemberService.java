@@ -64,4 +64,12 @@ public class MemberService {
         return memberRepository.findByEmail(email)
                 .orElseThrow(() -> new MemberNotFoundException("회원 정보를 찾을 수 없습니다. Email: " + email));
     }
+
+    /**
+     * 회원 수 반환
+     */
+    public int getMemberCount() {
+        List<Member> members = this.getMembers();
+        return members.size();
+    }
 }

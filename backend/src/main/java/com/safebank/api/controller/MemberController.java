@@ -38,6 +38,14 @@ public class MemberController {
         return ResponseEntity.ok(ApiResponse.success(collect));
     }
 
+    @GetMapping("/count")
+    @Operation(summary = "전체 멤버수 조회", description = "가입된 멤버의 수를 조회합니다.")
+    public ResponseEntity<ApiResponse<Integer>> getMemberCount() {
+        Integer memberCount = memberService.getMemberCount();
+
+        return ResponseEntity.ok(ApiResponse.success(memberCount));
+    }
+
     @PostMapping
     @Operation(summary = "회원 생성", description = "새로운 회원을 생성합니다")
     public ResponseEntity<ApiResponse<MemberResponse>> createMember(@Valid @RequestBody MemberCreateRequest request) {

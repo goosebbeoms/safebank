@@ -30,8 +30,13 @@ public class AccountService {
     }
 
     /**
-     *
+     * 총 계좌 수
      */
+    public int getAccountsCount() {
+        List<Account> accounts = this.getAccounts();
+
+        return accounts.size();
+    }
 
     /**
      * 계좌 생성

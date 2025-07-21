@@ -42,6 +42,14 @@ public class AccountController {
         return ResponseEntity.ok(ApiResponse.success(collect));
     }
 
+    @GetMapping("/count")
+    @Operation(summary = "전체 계좌 수 조회", description = "개설된 계좌의 개수를 조회합니다")
+    public ResponseEntity<ApiResponse<Integer>> getAccountsCount() {
+        int accountsCount = accountService.getAccountsCount();
+
+        return ResponseEntity.ok(ApiResponse.success(accountsCount));
+    }
+
     @PostMapping
     @Operation(summary = "계좌 생성", description = "새로운 계좌를 생성합니다")
     public ResponseEntity<ApiResponse<AccountResponse>> createAccount(@Valid @RequestBody AccountCreateRequest request) {

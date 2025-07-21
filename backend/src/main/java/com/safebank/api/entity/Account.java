@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Account {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
     private Long id;
 

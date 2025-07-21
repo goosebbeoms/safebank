@@ -38,7 +38,8 @@ public class SecurityConfig {
 
         // 허용할 Origin 설정
         configuration.setAllowedOrigins(Arrays.asList(
-                "http://localhost:5173"
+                "http://localhost:5173",
+                "http://localhost:8080"
         ));
 
         // 허용할 HTTP 메서드

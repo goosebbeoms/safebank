@@ -14,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -66,5 +68,11 @@ public class TransactionService {
     public Transaction getTransaction(Long id) {
         return transactionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("거래 내역을 찾을 수 없습니다. ID: " + id));
+    }
+
+    public int getTransactionCount() {
+        List<Transaction> transactions = transactionRepository.findAll();
+
+        return transactions.size();
     }
 }

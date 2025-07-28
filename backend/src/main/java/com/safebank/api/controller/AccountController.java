@@ -21,6 +21,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,6 +68,14 @@ public class AccountController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(ApiResponse.success("계좌가 성공적으로 생성되었습니다", response));
+    }
+
+    @GetMapping("/total-balance")
+    @Operation(summary = "전체 계좌 총 자산 조회", description = "모든 활성 계좌의 잔액 합계를 조회합니다")
+    public ResponseEntity<ApiResponse<BigDecimal>> getTotalBalance() {
+        BigDecimal totalBalance = accountService.getTotalBalance();
+
+        return ResponseEntity.ok(ApiResponse.success(totalBalance));
     }
 
     @GetMapping("/number/{accountNumber}")

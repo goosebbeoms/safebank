@@ -9,11 +9,13 @@ export const DashboardPage = () => {
   const [memberCount, setMemberCount] = useState<number>(0);
   const [accountCount, setAccountCount] = useState<number>(0);
   const [transactionCount, setTransactionCount] = useState<number>(0);
+  const [totalBalance, setTotalBalance] = useState<number>(0);
 
   useEffect(() => {
     loadMemberCount();
     loadAccountCount();
     loadTransactionCount();
+    loadTotalBalance();
   }, []);
 
   const loadMemberCount = async () => {
@@ -31,13 +33,10 @@ export const DashboardPage = () => {
     setTransactionCount(response.data);
   };
 
-  // sample data
-  const stats = {
-    totalMembers: 150,
-    totalAccounts: 1000,
-    totalTransactions: 10000,
-    totalBalance: 12500000,
-  };
+  const loadTotalBalance = async () => {
+    const response = await accountService.getTotalBalance();
+    setTotalBalance(response.data);
+  }
 
   return (
     <div className="space-y-6">
@@ -82,44 +81,9 @@ export const DashboardPage = () => {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">총 자산</p>
               <p className="text-2xl font-bold text-gray-900">
-                {stats.totalBalance.toLocaleString()}원
+                {totalBalance}원
               </p>
             </div>
-          </div>
-        </Card>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card title="최근 거래 내역">
-          <div className="space-y-3">
-            {/* 실제로는 API에서 최근 거래 데이터를 가져올 것 */}
-            <div className="flex justify-between items-center py-2 border-b">
-              <div>
-                <p className="font-medium">홍길동 → 김철수</p>
-                <p className="text-sm text-gray-600">생활비</p>
-              </div>
-              <div className="text-right">
-                <p className="font-medium text-red-600">-50,000원</p>
-                <p className="text-sm text-gray-600">2분 전</p>
-              </div>
-            </div>
-            {/* 더 많은 거래 내역... */}
-          </div>
-        </Card>
-
-        <Card title="계좌별 잔액 현황">
-          <div className="space-y-3">
-            {/* 실제로는 API에서 계좌 데이터를 가져올 것 */}
-            <div className="flex justify-between items-center py-2 border-b">
-              <div>
-                <p className="font-medium">3333-1234-5678-9012</p>
-                <p className="text-sm text-gray-600">홍길동</p>
-              </div>
-              <div className="text-right">
-                <p className="font-medium text-blue-600">1,500,000원</p>
-              </div>
-            </div>
-            {/* 더 많은 계좌 정보... */}
           </div>
         </Card>
       </div>

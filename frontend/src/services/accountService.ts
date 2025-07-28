@@ -11,4 +11,6 @@ export const accountService = {
     api.get("/accounts/number/" + accountNumber).then((res) => res.data),
   create: (data: AccountCreateRequest): Promise<ApiResponse<Account>> =>
     api.post("/accounts", data).then((res) => res.data),
+  getTotalBalance: (): Promise<ApiResponse<number>> =>
+    api.get("/accounts/total-balance").then((res) => res.data)
 };

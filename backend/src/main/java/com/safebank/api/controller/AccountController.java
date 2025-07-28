@@ -51,7 +51,7 @@ public class AccountController {
     }
 
     @GetMapping("/transactions/count")
-    @Operation(summary = "전체 계좌 수 조회", description = "개설된 계좌의 개수를 조회합니다")
+    @Operation(summary = "전체 거래 수 조회", description = "전체 거래의 개수를 조회합니다")
     public ResponseEntity<ApiResponse<Integer>> getTransactionsCount() {
         int transactionCount = transactionService.getTransactionCount();
 
